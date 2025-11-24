@@ -10,9 +10,9 @@ A Template for building **TypeScript libraries** :
 ✔ npm publishing
 
 ![CI](https://img.shields.io/github/actions/workflow/status/UlisesNiSchreiner/typescript-lib-template/ci.yml?label=CI)
-![npm version](https://img.shields.io/npm/v/typescript-lib-template)
-![npm downloads](https://img.shields.io/npm/dm/typescript-lib-template)
-![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+![npm version](https://img.shields.io/npm/v/uns_typescript-lib-template)
+![npm downloads](https://img.shields.io/npm/dm/uns_typescript-lib-template)
+[![Coverage](https://codecov.io/gh/UlisesNiSchreiner/typescript-lib-template/branch/master/graph/badge.svg)](https://codecov.io/gh/UlisesNiSchreiner/typescript-lib-template)
 ![license](https://img.shields.io/badge/License-MIT-green)
 ![typescript](https://img.shields.io/badge/TypeScript-5.x-blue)
 
@@ -21,7 +21,7 @@ A Template for building **TypeScript libraries** :
 # 🚀 Installation
 
 ```bash
-npm i typescript-lib-template
+npm i uns_typescript-lib-template
 ```
 
 ---
@@ -29,7 +29,7 @@ npm i typescript-lib-template
 # 📦 Usage
 
 ```ts
-import { sum } from "typescript-lib-template";
+import { sum } from "uns_typescript-lib-template";
 
 console.log(sum(2, 3)); // 5
 ```
