@@ -131,7 +131,6 @@ npm ci
 npm run build
 npm run test
 
-# enable Husky
 git add .
 git commit -m "feat: initial setup"
 ```
