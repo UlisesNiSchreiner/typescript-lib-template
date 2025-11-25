@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/UlisesNiSchreiner/typescript-lib-template/compare/v0.0.1...v1.0.0) (2025-11-25)
+
+### Features
+
+- create release 1.0.0 - 01 ([4b9803e](https://github.com/UlisesNiSchreiner/typescript-lib-template/commit/4b9803e20c593835815090a8cea23aef523eae4c))
+- project setup - 01 ([3786567](https://github.com/UlisesNiSchreiner/typescript-lib-template/commit/3786567afcc11d751f4474252dcf37bba6c96e3d))
+- project setup - 01 ([7f94f34](https://github.com/UlisesNiSchreiner/typescript-lib-template/commit/7f94f34c0b90aefca0cc61fb91434e4c7af5c3e8))
+- project setup - 02 ([e57b0b8](https://github.com/UlisesNiSchreiner/typescript-lib-template/commit/e57b0b8130b84be5b4ba9f886e59a10e1c9ef258))
+- project setup - 03 ([8088333](https://github.com/UlisesNiSchreiner/typescript-lib-template/commit/80883338826a35be61b30b238ed01a29dfa5b131))
+
 ### [0.0.1](https://github.com/UlisesNiSchreiner/typescript-lib-template/compare/v0.0.1-rc.1...v0.0.1) (2025-11-24)
 
 ### Features
