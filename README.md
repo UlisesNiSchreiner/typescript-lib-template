@@ -31,7 +31,7 @@ npm i uns-typescript-lib-template
 ```ts
 import { sum } from "uns-typescript-lib-template";
 
-console.log(sum(2, 3)); // 5
+console.log(sum(2, 3)); // -> 5
 ```
 
 ---
