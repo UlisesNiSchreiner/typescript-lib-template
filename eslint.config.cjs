@@ -45,4 +45,22 @@ module.exports = [
       ],
     },
   },
+  {
+    files: ["scripts/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "commonjs",
+      globals: {
+        require: "readonly",
+        module: "readonly",
+        __dirname: "readonly",
+        console: "readonly",
+        process: "readonly",
+      },
+    },
+    rules: {
+      // En scripts CLI no tiene sentido quejarse de "require"/"process"/etc.
+      "no-undef": "off",
+    },
+  },
 ];

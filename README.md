@@ -50,6 +50,34 @@ console.log(sum(2, 3)); // 5
 
 ---
 
+# 🧩 Initializing a New Project from This Template
+
+When creating a new repository from this template, the default library name is:
+
+```
+uns_typescript-lib-template
+```
+
+You can automatically rename it by running:
+
+```bash
+npm run init-template <your-library-name>
+```
+
+Example:
+
+```bash
+npm run init-template my-awesome-lib
+```
+
+This will:
+
+- Update `package.json` with the new package name
+- Update README installation/import examples
+- Update npm version/download badges
+
+---
+
 # 🔀 LibFlow — Workflow for Libraries
 
 This project uses **LibFlow**, a GitFlow variant optimized specifically for library development.
@@ -63,7 +91,7 @@ This project uses **LibFlow**, a GitFlow variant optimized specifically for libr
 
 ### 🔄 Full Flow
 
-1. Create a feature:
+1. Create a feature branch:
    ```bash
    git checkout -b feature/my-feature
    ```
@@ -72,12 +100,12 @@ This project uses **LibFlow**, a GitFlow variant optimized specifically for libr
    ```bash
    git checkout -b release/1.2
    ```
-4. Publish **Release Candidates**:
+4. Publish RC:
    ```bash
    npm run release:rc
    ```
-5. Validate + test RC
-6. Merge `release/*` → `master`
+5. Validate RC
+6. Merge release → master
 7. Publish stable version:
    ```bash
    npm run release:patch   # or :minor / :major
@@ -87,26 +115,23 @@ This project uses **LibFlow**, a GitFlow variant optimized specifically for libr
 
 # 🏷 Versioning & Releases
 
-This project uses **standard-version** for controlled, manual versioning.
+Powered by **standard-version**.
 
-### 📌 Available Commands
+| Action            | Script                        |
+| ----------------- | ----------------------------- |
+| Patch release     | `npm run release:patch`       |
+| Minor release     | `npm run release:minor`       |
+| Major release     | `npm run release:major`       |
+| Release candidate | `npm run release:rc`          |
+| Finalize RC patch | `npm run release:final:patch` |
+| Finalize RC minor | `npm run release:final:minor` |
+| Finalize RC major | `npm run release:final:major` |
 
-| Action              | Script                        | Result         |
-| ------------------- | ----------------------------- | -------------- |
-| Patch release       | `npm run release:patch`       | x.y.(z+1)      |
-| Minor release       | `npm run release:minor`       | x.(y+1).0      |
-| Major release       | `npm run release:major`       | (x+1).0.0      |
-| Release candidate   | `npm run release:rc`          | x.y.z-rc.n     |
-| Finalize RC (patch) | `npm run release:final:patch` | stable version |
-| Finalize RC (minor) | `npm run release:final:minor` | stable version |
-| Finalize RC (major) | `npm run release:final:major` | stable version |
+Each command updates:
 
-Each command generates:
-
-- Updated `CHANGELOG.md`
-- Updated version in `package.json`
-- Git tag `vX.Y.Z`
-- Automatic push
+- `CHANGELOG.md`
+- package version
+- Git tag
 - npm publish (requires `NPM_TOKEN`)
 
 ---
@@ -141,7 +166,7 @@ git commit -m "feat: initial setup"
 
 ### **`sum(a: number, b: number): number`**
 
-Adds two numbers and validates that both are finite.
+Adds two numbers and validates they are finite.
 
 ---
 
