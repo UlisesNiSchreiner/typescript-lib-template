@@ -1,80 +1,51 @@
-#!/usr/bin/env node
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
 
-/**
- * Init script for repos created from the template.
- * Usage:
- *   npm run init-template <new-package-name>
- */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const fs = require("node:fs");
-const path = require("node:path");
+function updatePackageJson(newName) {
+  const packagePath = path.resolve(__dirname, "..", "package.json");
+  const pkg = JSON.parse(fs.readFileSync(packagePath, "utf8"));
 
-// ----- 1. Read parameter -----
-const newName = process.argv[2];
+  pkg.name = newName;
+  pkg.version = "1.0.0"; // reset version
+  pkg.description = `${newName} - auto-generated from template`;
 
-if (!newName) {
-  console.error(`
-❌ ERROR: Missing package name.
-
-Usage:
-  npm run init-template <new-package-name>
-
-Example:
-  npm run init-template my-awesome-lib
-
-`);
-  process.exit(1);
+  fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2));
+  console.log(`✔ package.json updated → name: ${newName}`);
 }
 
-console.log(`🔧 Initializing template with package name: ${newName}`);
+function updateReadme(newName) {
+  const readmePath = path.resolve(__dirname, "..", "README.md");
 
-const PLACEHOLDER_NAME = "uns_typescript-lib-template";
+  if (!fs.existsSync(readmePath)) return;
 
-// ----- 2. Update package.json -----
-const pkgPath = path.join(process.cwd(), "package.json");
+  let content = fs.readFileSync(readmePath, "utf8");
+  content = content.replace(/uns-typescript-lib-template/g, newName);
+  content = content.replace(/typescript-lib-template/g, newName);
 
-if (!fs.existsSync(pkgPath)) {
-  console.error("❌ package.json not found. Are you running in the project root?");
-  process.exit(1);
+  fs.writeFileSync(readmePath, content);
+  console.log("✔ README.md updated");
 }
 
-const pkgJson = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+function main() {
+  const newName = process.argv[2];
 
-pkgJson.name = newName;
-
-fs.writeFileSync(pkgPath, JSON.stringify(pkgJson, null, 2) + "\n", "utf8");
-console.log(`✅ Updated package.json name → "${newName}"`);
-
-// ----- 3. Update README.md -----
-const readmePath = path.join(process.cwd(), "README.md");
-
-if (fs.existsSync(readmePath)) {
-  let readme = fs.readFileSync(readmePath, "utf8");
-  let modified = readme;
-
-  // Replace install lines
-  modified = modified.replace(new RegExp(`npm i ${PLACEHOLDER_NAME}`, "g"), `npm i ${newName}`);
-
-  // Replace import lines
-  modified = modified.replace(new RegExp(`from "${PLACEHOLDER_NAME}"`, "g"), `from "${newName}"`);
-
-  // Replace npm badges
-  modified = modified.replace(
-    new RegExp(`img.shields.io/npm/v/${PLACEHOLDER_NAME}`, "g"),
-    `img.shields.io/npm/v/${newName}`,
-  );
-
-  modified = modified.replace(
-    new RegExp(`img.shields.io/npm/dm/${PLACEHOLDER_NAME}`, "g"),
-    `img.shields.io/npm/dm/${newName}`,
-  );
-
-  if (modified !== readme) {
-    fs.writeFileSync(readmePath, modified, "utf8");
-    console.log("✅ Updated README.md with new package name");
-  } else {
-    console.log("ℹ README.md contained no placeholder references.");
+  if (!newName) {
+    console.error("❌ Missing package name. Run:");
+    console.error("   npm run init-template <new-name>");
+    process.exit(1);
   }
+
+  console.log(`🔧 Initializing template for: ${newName}`);
+
+  updatePackageJson(newName);
+  updateReadme(newName);
+
+  console.log("🚀 Template initialized successfully!");
 }
 
-console.log("\n✨ Template initialization complete!\n");
+main();
